@@ -1,10 +1,10 @@
-const boxes = document.querySelectorAll('.boxes-item');
+const boxesItems = document.querySelectorAll('.boxes-item');
+const boxesContainer = document.getElementById('boxes-container');
+const circulo = document.getElementById('circulo');
+const quadrado = document.getElementById('quadrado');
 
 function changeFormat(formato) {
-    const circulo = document.getElementById('circulo');
-    const quadrado = document.getElementById('quadrado');
-
-    boxes.forEach(box => {
+    boxesItems.forEach(box => {
         if (formato.id === 'circulo') {
             box.style.borderRadius = '100%';
             circulo.style.border = '2px solid black';
@@ -21,45 +21,36 @@ function changeSize() {
     const input = document.querySelector('input');
     const tamanho = input.value + 'px';
 
-    boxes.forEach(box => {
+    boxesItems.forEach(box => {
         box.style.width = tamanho;
         box.style.height = tamanho;
     });
 }
 
 function changeFlexDirection(selection) {
-    const boxes = document.getElementById('boxes-container');
-
-    boxes.style.flexDirection = selection.value;
+    boxesContainer.style.flexDirection = selection.value;
 }
 
 function changeJustifyContent(selection) {
-    const boxes = document.getElementById('boxes-container');
-
-    boxes.style.justifyContent = selection.value;
+    boxesContainer.style.justifyContent = selection.value;
 }
 
 function changeAlignItems(selection) {
-    const boxes = document.getElementById('boxes-container');
-    const boxesItem = document.querySelectorAll('.boxes-item');
-
     if (selection.value === 'stretch') {
-        boxesItem.forEach(box => {
+        boxesItems.forEach(box => {
             box.style.height = 'auto';
         });
     }
     else {
-        boxesItem.forEach(box => {
+        boxesItems.forEach(box => {
             box.style.height = box.style.width;
         });
     }
-    boxes.style.alignItems = selection.value;
+    boxesContainer.style.alignItems = selection.value;
 }
 
 function changeColor(corEscolhida) {
     const cor = getComputedStyle(corEscolhida).backgroundColor;
-    console.log(cor);
-
     const colorSelection = document.querySelectorAll('.cores-item');
 
     colorSelection.forEach(color => {
@@ -70,11 +61,9 @@ function changeColor(corEscolhida) {
             color.style.border = 'none';
         }
     });
-    boxes.forEach(box => {
+    boxesItems.forEach(box => {
         box.style.backgroundColor = cor;
     });
-    const circulo = document.getElementById('circulo');
-    const quadrado = document.getElementById('quadrado');
 
     circulo.style.backgroundColor = cor;
     quadrado.style.backgroundColor = cor;
